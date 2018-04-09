@@ -1,0 +1,31 @@
+        //Get columns from existing table
+        Enumeration<TableColumn> columns = jTable1.getColumnModel().getColumns();
+        //Create custom renderer
+        TableCellRenderer renderer = new DefaultTableCellRenderer() {
+            public Component getTableCellRendererComponent(
+                    JTable table,
+                    Object value,
+                    boolean isSelected,
+                    boolean hasFocus,
+                    int row,
+                    int col) {
+                JLabel label = (JLabel) super.getTableCellRendererComponent(
+                        table,
+                        value,
+                        isSelected,
+                        hasFocus,
+                        row,
+                        col);
+                if (row == 0) {
+                    label.setBackground(Color.GREEN);
+                }else{
+                    label.setBackground(Color.WHITE);
+                }
+                return label;
+            }
+
+        };
+        //Add renderer to columns
+        while(columns.hasMoreElements()){
+            columns.nextElement().setCellRenderer(renderer);
+        }
